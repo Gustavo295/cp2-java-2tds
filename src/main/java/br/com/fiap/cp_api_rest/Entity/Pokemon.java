@@ -9,18 +9,18 @@ import java.util.List;
 
 public class Pokemon {
     private Long id;
-    private String name;
     private int number;
-    private boolean shiny;
-    private Trainer trainer;
-    private String location;
-    private Nature nature;
+    private String name;
+    private Gender gender;
     private Type typePrimary;
     private Type typeSecondary;
-    private Gender gender;
-    private Date dateCapture;
-    private Status status;
-    private int lineEvolution;
-    private List<Move> moves;
     private String ability;
+    private Nature nature;
+    private Status status;
+    private String location;
+    private Trainer trainer;
+    private Date dateCapture;
+    private List<Move> moves;
+    private int lineEvolution;
+    private boolean shiny;
 }

@@ -6,9 +6,11 @@ import java.util.List;
 public class Trainer {
     private Long id;
     private String name;
-    private Date date;
+    private Date birthDate;
+    private Date startJourney;
     private Number money;
-    private int pokedex;
+    private int pokemonHasCaught;
+    private int pokemonHasView;
     private String city;
     private List<Pokemon> pokemons;
 }
