@@ -11,16 +11,11 @@ public class Pokemon {
     private Long id;
     private int number;
     private String name;
-    private Gender gender;
+    private List<Gender> possibleGender;
+    private List<String> possibleAbility;
     private Type typePrimary;
     private Type typeSecondary;
-    private String ability;
-    private Nature nature;
-    private Status status;
-    private String location;
-    private Trainer trainer;
-    private Date dateCapture;
-    private List<Move> moves;
     private int lineEvolution;
-    private boolean shiny;
+    private List<Move> possibleMovesLearn;
+
 }

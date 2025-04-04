@@ -17,11 +17,12 @@ public class Move {
     private boolean signature;
     private int ppMax;
     private int ppCurrent;
-    private List<Pokemon> pokemonsLearn;
     private String effectMove;
     private double chanceEffectMove;
     private String effectSecondary;
     private double chanceEffectSecondary;
+    private List<Pokemon> pokemonsLearn;
+
 
 
 }
