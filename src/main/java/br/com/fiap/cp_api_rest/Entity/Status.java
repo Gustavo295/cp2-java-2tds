@@ -1,14 +1,46 @@
 package br.com.fiap.cp_api_rest.Entity;
 
+import java.util.Random;
+
 public class Status {
     private Long id;
-    private int lvl;
-    private int expPoints;
-    private int hp;
-    private int attack;
-    private int spAttack;
-    private int defense;
-    private int spDefense;
-    private int speed;
-    private int total;
+    private int lvl, expPoints;
+    //STATUS BASE DO POKEMON
+
+    private int hp,attack, spAttack,defense,spDefense,speed,total;
+    //STATUS INDIVIDUAIS DO POKEMON (0 a 31)
+    private int hpBase,attackBase, spAttackBase,defenseBase,spDefenseBase,speedBase,totalBase;
+    private int hpIv,attackIv, spAttackIv,defenseIv,spDefenseIv,speedIv,totalIv;
+    //TODO: IMPLEMENTAR SISTEMA DE CALCULO DE EVS
+    //STATUS DA EXPERIENCIA DO POKEMON(510 EVs MAXIMOS E 252 maximos por atributo)
+    private int hpEv,attackEv, spAttackEv,defenseEv,spDefenseEv,speedEv,totalEv;
+
+    public void generatedIvs(){
+        Random random = new Random();
+
+        this.hpIv = random.nextInt(32);
+        this.attackIv = random.nextInt(32);
+        this.spAttackIv = random.nextInt(32);
+        this.defenseIv = random.nextInt(32);
+        this.spDefenseIv = random.nextInt(32);
+        this.speedIv = random.nextInt(32);
+    }
+
+    public int calculateHp(){
+        return ((2*hpBase+hpIv+(hpEv/4)*lvl)/100)+lvl+10;
+
+    }
+
+    public void calculateAllAttributes(){
+        this.hp=calculateHp();
+        this.attack= calculateOtherAttributes(attackBase,attackIv,attackEv);
+        this.spAttack=calculateOtherAttributes(spAttackBase,spAttackIv,spAttackEv);
+        this.defense=calculateOtherAttributes(defenseBase,defenseIv,defenseEv);
+        this.spDefense=calculateOtherAttributes(spDefenseBase,spDefenseIv,spDefenseEv);
+        this.speed=calculateOtherAttributes(speedBase,speedIv,speedEv);
+    }
+    public int calculateOtherAttributes(int base,int Iv,int Ev){
+        return ((2*base+Iv+(Ev/4)*lvl)/100)+5;
+    }
+
 }
