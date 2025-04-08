@@ -1,6 +1,6 @@
-package br.com.fiap.cp_api_rest.Repository;
+package br.com.fiap.cp_api_rest.repository;
 
-import br.com.fiap.cp_api_rest.Entity.Status;
+import br.com.fiap.cp_api_rest.entity.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

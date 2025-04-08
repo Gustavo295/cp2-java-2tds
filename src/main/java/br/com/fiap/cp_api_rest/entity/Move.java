@@ -1,14 +1,18 @@
-package br.com.fiap.cp_api_rest.Entity;
+package br.com.fiap.cp_api_rest.entity;
 
 
-import br.com.fiap.cp_api_rest.Enum.Category;
-import br.com.fiap.cp_api_rest.Enum.Effect;
-import br.com.fiap.cp_api_rest.Enum.Type;
+import br.com.fiap.cp_api_rest.enums.Category;
+import br.com.fiap.cp_api_rest.enums.Effect;
+import br.com.fiap.cp_api_rest.enums.Type;
+import jakarta.persistence.*;
 import jdk.jfr.Percentage;
 
 import java.util.List;
-
+@Entity
 public class Move {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     private String name;
     private String description;
@@ -19,11 +23,10 @@ public class Move {
     private int ppMax;
     private int ppCurrent;
     private Effect effectMove;
-    @Percentage
     private double chanceEffectMove;
     private Effect effectSecondary;
-    @Percentage
     private double chanceEffectSecondary;
+    @ManyToMany
     private List<Pokemon> pokemonsLearn;
 
 

@@ -1,14 +1,22 @@
-package br.com.fiap.cp_api_rest.Entity;
+package br.com.fiap.cp_api_rest.entity;
+
+import br.com.fiap.cp_api_rest.enums.GroupExp;
+import jakarta.persistence.*;
 
 import java.util.Random;
-
+@Entity
 public class Status {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     //TODO: ADICIONAR MÉTODO DE EVOLUIR
+    //TODO: ADICIONAR MÉTODO DE GERAR EXPERIENCIA
     private int lvl, expPoints;
     //STATUS BASE DO POKEMON
-
+    @OneToOne
+    private PokemonTrainer pokemonTrainer;
     int hp,attack, spAttack,defense,spDefense,speed,total;
     //STATUS INDIVIDUAIS DO POKEMON (0 a 31)
     private int hpBase,attackBase, spAttackBase,defenseBase,spDefenseBase,speedBase,totalBase;
@@ -55,5 +63,26 @@ public class Status {
     public int calculateOtherAttributes(int base,int Iv,int Ev){
         return ((2*base+Iv+(Ev/4)*lvl)/100)+5;
     }
+    public int calculateLevelFromExp(GroupExp groupXp, int expPoints) {
 
+        for (lvl = 1; lvl <= 100; lvl++) {
+            int requiredExp;
+            if (groupXp.equals(GroupExp.FAST)) {
+                requiredExp = (int) ((4 * Math.pow(lvl, 3)) / 5);
+            } else if (groupXp.equals(GroupExp.MEDIUM_FAST)) {
+                requiredExp = (int) Math.pow(lvl, 3);
+            } else if (groupXp.equals(GroupExp.MEDIUM_SLOW)) {
+                requiredExp = (int) (((6 * Math.pow(lvl, 3)) / 5) - (15 * Math.pow(lvl, 2)) + (100 * lvl) - 140);
+            } else if (groupXp.equals(GroupExp.SLOW)) {
+                requiredExp = (int) ((5 * Math.pow(lvl, 3)) / 4);
+            } else {
+                return lvl;
+            }
+
+            if (requiredExp > expPoints) {
+                return lvl - 1;
+            }
+        }
+        return 100;
+    }
 }
