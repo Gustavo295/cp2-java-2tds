@@ -6,8 +6,8 @@ import br.com.fiap.cp_api_rest.Enum.Nature;
 import java.util.Date;
 import java.util.List;
 
-public class PokemonTrainer {
-    private Pokemon pokemon;
+public class PokemonTrainer extends Pokemon{
+    private String nickname;
     private Gender gender;
     private String ability;
     private Nature nature;

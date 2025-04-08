@@ -11,6 +11,7 @@ public class Pokemon {
     private Long id;
     private int number;
     private String name;
+    private String title;
     private List<Gender> possibleGender;
     private List<String> possibleAbility;
     private Type typePrimary;

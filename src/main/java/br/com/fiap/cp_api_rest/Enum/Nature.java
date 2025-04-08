@@ -25,5 +25,7 @@ public enum Nature {
     BRAVE,
     RELAXED,
     QUIET,
-    SASSY
+    SASSY;
+
+
 }

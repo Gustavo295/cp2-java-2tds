@@ -2,7 +2,9 @@ package br.com.fiap.cp_api_rest.Entity;
 
 
 import br.com.fiap.cp_api_rest.Enum.Category;
+import br.com.fiap.cp_api_rest.Enum.Effect;
 import br.com.fiap.cp_api_rest.Enum.Type;
+import jdk.jfr.Percentage;
 
 import java.util.List;
 
@@ -14,12 +16,13 @@ public class Move {
     private Category category;
     private double power;
     private double accuracy;
-    private boolean signature;
     private int ppMax;
     private int ppCurrent;
-    private String effectMove;
+    private Effect effectMove;
+    @Percentage
     private double chanceEffectMove;
-    private String effectSecondary;
+    private Effect effectSecondary;
+    @Percentage
     private double chanceEffectSecondary;
     private List<Pokemon> pokemonsLearn;
 

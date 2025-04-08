@@ -7,5 +7,6 @@ public enum Effect {
     CONFUSED,
     FLINCH,
     HEAL,
+    NULL
 
 }

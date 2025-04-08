@@ -19,6 +19,7 @@ public enum Type {
     DARK,
     FAIRY,
     DRAGON,
+    ERROR,
     NULL
 
 }
