@@ -2,27 +2,37 @@ package br.com.fiap.cp_api_rest.service;
 
 import br.com.fiap.cp_api_rest.entity.PokemonTrainer;
 import br.com.fiap.cp_api_rest.repository.PokemonTrainerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PokemonTrainerService {
-    @Autowired
-    private  PokemonTrainerRepository repository;
+
+    private final PokemonTrainerRepository repository;
+
+    public PokemonTrainerService(PokemonTrainerRepository repository) {
+        this.repository = repository;
+    }
 
     public List<PokemonTrainer> findAll() {
         return repository.findAll();
     }
 
-    public Optional<PokemonTrainer> findById(Long id) {
-        return repository.findById(id);
+    public PokemonTrainer findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Treinador não encontrado com id " + id));
     }
 
-    public PokemonTrainer save(PokemonTrainer pt) {
-        return repository.save(pt);
+    public PokemonTrainer save(PokemonTrainer trainer) {
+        return repository.save(trainer);
+    }
+
+    public PokemonTrainer update(Long id, PokemonTrainer atualizado) {
+        findById(id);
+        atualizado.setId(id);
+        return repository.save(atualizado);
     }
 
     public void delete(Long id) {
