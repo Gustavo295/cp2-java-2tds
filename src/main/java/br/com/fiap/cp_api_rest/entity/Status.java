@@ -8,14 +8,13 @@ import java.util.Random;
 public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
     //TODO: ADICIONAR MÉTODO DE EVOLUIR
     //TODO: ADICIONAR MÉTODO DE GERAR EXPERIENCIA
     private int lvl, expPoints;
     //STATUS BASE DO POKEMON
-    @OneToOne
+    @OneToOne(mappedBy = "status")
     private PokemonTrainer pokemonTrainer;
     int hp,attack, spAttack,defense,spDefense,speed,total;
     //STATUS INDIVIDUAIS DO POKEMON (0 a 31)
@@ -84,5 +83,125 @@ public class Status {
             }
         }
         return 100;
+    }
+
+    public Status() {
+    }
+
+    public Status(Long id, int lvl, int expPoints, PokemonTrainer pokemonTrainer, int hp, int attack, int spAttack, int defense, int spDefense, int speed, int total, int hpBase, int attackBase, int spAttackBase, int defenseBase, int spDefenseBase, int speedBase, int totalBase) {
+        this.id = id;
+        this.lvl = lvl;
+        this.expPoints = expPoints;
+        this.pokemonTrainer = pokemonTrainer;
+        this.hp = hp;
+        this.attack = attack;
+        this.spAttack = spAttack;
+        this.defense = defense;
+        this.spDefense = spDefense;
+        this.speed = speed;
+        this.total = total;
+        this.hpBase = hpBase;
+        this.attackBase = attackBase;
+        this.spAttackBase = spAttackBase;
+        this.defenseBase = defenseBase;
+        this.spDefenseBase = spDefenseBase;
+        this.speedBase = speedBase;
+        this.totalBase = totalBase;
+    }
+
+    public int getHpBase() {
+        return hpBase;
+    }
+
+    public void setHpBase(int hpBase) {
+        this.hpBase = hpBase;
+    }
+
+    public int getAttackBase() {
+        return attackBase;
+    }
+
+    public void setAttackBase(int attackBase) {
+        this.attackBase = attackBase;
+    }
+
+    public int getSpAttackBase() {
+        return spAttackBase;
+    }
+
+    public void setSpAttackBase(int spAttackBase) {
+        this.spAttackBase = spAttackBase;
+    }
+
+    public int getDefenseBase() {
+        return defenseBase;
+    }
+
+    public void setDefenseBase(int defenseBase) {
+        this.defenseBase = defenseBase;
+    }
+
+    public int getSpDefenseBase() {
+        return spDefenseBase;
+    }
+
+    public void setSpDefenseBase(int spDefenseBase) {
+        this.spDefenseBase = spDefenseBase;
+    }
+
+    public int getSpeedBase() {
+        return speedBase;
+    }
+
+    public void setSpeedBase(int speedBase) {
+        this.speedBase = speedBase;
+    }
+
+    public int getLvl() {
+        return lvl;
+    }
+
+    public int getExpPoints() {
+        return expPoints;
+    }
+
+    public PokemonTrainer getPokemonTrainer() {
+        return pokemonTrainer;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getSpAttack() {
+        return spAttack;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public int getSpDefense() {
+        return spDefense;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

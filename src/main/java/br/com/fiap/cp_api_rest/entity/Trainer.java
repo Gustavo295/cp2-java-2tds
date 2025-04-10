@@ -17,15 +17,15 @@ public class Trainer {
     private int numberBadge;
     private String city;
 
-    @OneToMany
-    private List<Pokemon> pokemons;
+    @OneToMany(mappedBy = "trainer")
+    private List<PokemonTrainer> pokemons;
     //TODO: ADIONAR HISTORICO DE VITÓRIAS E DERROTAS QUANDO HOUVER A CLASSE BATTLE
 
 
     public Trainer() {
     }
 
-    public Trainer(Long id, String name, Date startJourney, Number money, int pokemonHasCaught, int pokemonHasView, int numberBadge, String city, List<Pokemon> pokemons) {
+    public Trainer(Long id, String name, Date startJourney, Number money, int pokemonHasCaught, int pokemonHasView, int numberBadge, String city, List<PokemonTrainer> pokemons) {
         this.id = id;
         this.name = name;
         this.startJourney = startJourney;
@@ -101,11 +101,11 @@ public class Trainer {
         this.city = city;
     }
 
-    public List<Pokemon> getPokemons() {
+    public List<PokemonTrainer> getPokemons() {
         return pokemons;
     }
 
-    public void setPokemons(List<Pokemon> pokemons) {
+    public void setPokemons(List<PokemonTrainer> pokemons) {
         this.pokemons = pokemons;
     }
 }
