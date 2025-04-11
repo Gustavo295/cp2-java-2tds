@@ -8,7 +8,7 @@ import java.util.List;
 public class Trainer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String name;
     private Date startJourney;
     private double money;
@@ -25,7 +25,7 @@ public class Trainer {
     public Trainer() {
     }
 
-    public Trainer(Long id, String name, Date startJourney, double money, int pokemonHasCaught, int pokemonHasView, int numberBadge, String city, List<PokemonTrainer> pokemons) {
+    public Trainer(Integer id, String name, Date startJourney, double money, int pokemonHasCaught, int pokemonHasView, int numberBadge, String city, List<PokemonTrainer> pokemons) {
         this.id = id;
         this.name = name;
         this.startJourney = startJourney;
@@ -37,11 +37,11 @@ public class Trainer {
         this.pokemons = pokemons;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -12,7 +12,7 @@ public class PokemonTrainer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private Long id;
+    private Integer id;
     private String nickname;
     @Enumerated(EnumType.STRING)
     private GroupExp groupExp;
@@ -46,7 +46,7 @@ public class PokemonTrainer {
     public PokemonTrainer() {
     }
 
-    public PokemonTrainer(Long id, String nickname, GroupExp groupExp, Pokemon pokemon, Gender gender, String ability, Nature nature, Status status, String location, Trainer trainer, Date dateCapture, List<Move> moves, boolean shiny) {
+    public PokemonTrainer(Integer id, String nickname, GroupExp groupExp, Pokemon pokemon, Gender gender, String ability, Nature nature, Status status, String location, Trainer trainer, Date dateCapture, List<Move> moves, boolean shiny) {
         this.id = id;
         this.nickname = nickname;
         this.groupExp = groupExp;
@@ -62,11 +62,11 @@ public class PokemonTrainer {
         this.shiny = shiny;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

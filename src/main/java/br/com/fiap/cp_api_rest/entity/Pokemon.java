@@ -9,7 +9,7 @@ import java.util.List;
 public class Pokemon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private int number;
     private String name;
     private String title;
@@ -37,7 +37,7 @@ public class Pokemon {
     public Pokemon() {
     }
 
-    public Pokemon(Long id, int number, String name, String title, String description, List<Gender> possibleGender, List<String> possibleAbility, Type typePrimary, Type typeSecondary, int lineEvolution, List<Move> possibleMovesLearn) {
+    public Pokemon(Integer id, int number, String name, String title, String description, List<Gender> possibleGender, List<String> possibleAbility, Type typePrimary, Type typeSecondary, int lineEvolution, List<Move> possibleMovesLearn) {
         this.id = id;
         this.number = number;
         this.name = name;
@@ -59,11 +59,11 @@ public class Pokemon {
         this.description = description;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

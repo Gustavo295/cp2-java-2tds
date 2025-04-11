@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 public record TrainerResponse(
-        Long id,
+        Integer id,
         String name,
         Date startJourney,
         double money,

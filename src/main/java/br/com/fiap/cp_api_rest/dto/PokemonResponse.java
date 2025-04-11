@@ -4,6 +4,7 @@ import br.com.fiap.cp_api_rest.enums.Type;
 import org.springframework.hateoas.Link;
 
 public record PokemonResponse (
+        Integer id,
         int number,
         String name,
         String title,

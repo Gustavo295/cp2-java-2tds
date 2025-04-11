@@ -8,7 +8,7 @@ import java.util.Random;
 public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     //TODO: ADICIONAR MÉTODO DE EVOLUIR
     //TODO: ADICIONAR MÉTODO DE GERAR EXPERIENCIA
@@ -89,7 +89,7 @@ public class Status {
     public Status() {
     }
 
-    public Status(Long id, int lvl, int expPoints, PokemonTrainer pokemonTrainer, int hp, int attack, int spAttack, int defense, int spDefense, int speed, int total, int hpBase, int attackBase, int spAttackBase, int defenseBase, int spDefenseBase, int speedBase, int totalBase) {
+    public Status(Integer id, int lvl, int expPoints, PokemonTrainer pokemonTrainer, int hp, int attack, int spAttack, int defense, int spDefense, int speed, int total, int hpBase, int attackBase, int spAttackBase, int defenseBase, int spDefenseBase, int speedBase, int totalBase) {
         this.id = id;
         this.lvl = lvl;
         this.expPoints = expPoints;
@@ -206,11 +206,11 @@ public class Status {
         return total;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

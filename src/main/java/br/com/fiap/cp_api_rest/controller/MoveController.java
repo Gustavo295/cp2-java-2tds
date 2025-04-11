@@ -3,6 +3,7 @@ package br.com.fiap.cp_api_rest.controller;
 import br.com.fiap.cp_api_rest.dto.MoveRequest;
 import br.com.fiap.cp_api_rest.dto.MoveResponse;
 import br.com.fiap.cp_api_rest.service.MoveService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -25,6 +26,8 @@ public class MoveController {
     public MoveController(MoveService service) {
         this.service = service;
     }
+
+
 
     @GetMapping
     public ResponseEntity<Page<MoveResponse>> getAll(@RequestParam(defaultValue = "0") Integer page) {
