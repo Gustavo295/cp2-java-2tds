@@ -165,6 +165,10 @@ public class Status {
         return expPoints;
     }
 
+    public void setPokemonTrainer(PokemonTrainer pokemonTrainer) {
+        this.pokemonTrainer = pokemonTrainer;
+    }
+
     public PokemonTrainer getPokemonTrainer() {
         return pokemonTrainer;
     }

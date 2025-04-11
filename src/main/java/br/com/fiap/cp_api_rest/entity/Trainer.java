@@ -11,7 +11,7 @@ public class Trainer {
     private Long id;
     private String name;
     private Date startJourney;
-    private Number money;
+    private double money;
     private int pokemonHasCaught;
     private int pokemonHasView;
     private int numberBadge;
@@ -25,7 +25,7 @@ public class Trainer {
     public Trainer() {
     }
 
-    public Trainer(Long id, String name, Date startJourney, Number money, int pokemonHasCaught, int pokemonHasView, int numberBadge, String city, List<PokemonTrainer> pokemons) {
+    public Trainer(Long id, String name, Date startJourney, double money, int pokemonHasCaught, int pokemonHasView, int numberBadge, String city, List<PokemonTrainer> pokemons) {
         this.id = id;
         this.name = name;
         this.startJourney = startJourney;
@@ -61,11 +61,11 @@ public class Trainer {
         this.startJourney = startJourney;
     }
 
-    public Number getMoney() {
+    public double getMoney() {
         return money;
     }
 
-    public void setMoney(Number money) {
+    public void setMoney(double money) {
         this.money = money;
     }
 

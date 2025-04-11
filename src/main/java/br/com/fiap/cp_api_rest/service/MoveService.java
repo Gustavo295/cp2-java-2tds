@@ -49,7 +49,6 @@ public class MoveService {
         moveExistente.setPower(request.power());
         moveExistente.setAccuracy(request.accuracy());
         moveExistente.setPpMax(request.ppMax());
-        moveExistente.setPpCurrent(request.ppCurrent());
         moveExistente.setPokemonsLearn(request.pokemonsLearn());
 
         return MoveToResponse(repository.save(moveExistente));
@@ -72,7 +71,6 @@ public class MoveService {
         move.setPower(request.power());
         move.setAccuracy(request.accuracy());
         move.setPpMax(request.ppMax());
-        move.setPpCurrent(request.ppCurrent());
         move.setPokemonsLearn(request.pokemonsLearn());
         return move;
     }

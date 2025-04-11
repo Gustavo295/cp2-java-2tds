@@ -13,8 +13,8 @@ public record TrainerRequest(
         Date startJourney,
 
         @NotNull(message = "O dinheiro não pode ser nulo")
-        @PositiveOrZero(message = "O dinheiro não pode ser negativo")
-        Number money,
+        @Min(value = 0,message = "O dinheiro não pode ser negativo")
+        double money,
 
         @Min(value = 0, message = "O número de Pokémon capturados não pode ser negativo")
         int pokemonHasCaught,

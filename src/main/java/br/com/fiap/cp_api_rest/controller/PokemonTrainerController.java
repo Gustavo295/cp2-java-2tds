@@ -1,14 +1,18 @@
 package br.com.fiap.cp_api_rest.controller;
 
-import br.com.fiap.cp_api_rest.entity.PokemonTrainer;
+import br.com.fiap.cp_api_rest.dto.PokemonTrainerRequest;
+import br.com.fiap.cp_api_rest.dto.PokemonTrainerResponse;
 import br.com.fiap.cp_api_rest.service.PokemonTrainerService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/trainer")
+@RequestMapping(value="/pokemon-trainers",produces = {"application/json"})
+@Tag(name = "api-pokemons-trainers")
 public class PokemonTrainerController {
 
     private final PokemonTrainerService service;
@@ -18,23 +22,23 @@ public class PokemonTrainerController {
     }
 
     @GetMapping
-    public List<PokemonTrainer> getAll() {
+    public List<PokemonTrainerResponse> findAll() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PokemonTrainer> getById(@PathVariable Long id) {
+    public ResponseEntity<PokemonTrainerResponse> findById(@PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<PokemonTrainer> create(@RequestBody PokemonTrainer trainer) {
-        return ResponseEntity.ok(service.save(trainer));
+    public ResponseEntity<PokemonTrainerResponse> save(@RequestBody @Valid PokemonTrainerRequest request) {
+        return ResponseEntity.ok(service.save(request));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PokemonTrainer> update(@PathVariable Long id, @RequestBody PokemonTrainer trainer) {
-        return ResponseEntity.ok(service.update(id, trainer));
+    public ResponseEntity<PokemonTrainerResponse> update(@PathVariable Long id, @RequestBody @Valid PokemonTrainerRequest request) {
+        return ResponseEntity.ok(service.update(id, request));
     }
 
     @DeleteMapping("/{id}")

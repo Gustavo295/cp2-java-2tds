@@ -3,7 +3,8 @@ package br.com.fiap.cp_api_rest.dto;
 import jakarta.validation.constraints.*;
 
 public record StatusRequest(
-
+        @PositiveOrZero
+        int exp,
         @Min(value = 1)
         @Max(value = 255)
         int hpBase,

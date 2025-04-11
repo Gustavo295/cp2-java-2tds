@@ -14,6 +14,7 @@ public class PokemonTrainer {
 
     private Long id;
     private String nickname;
+    @Enumerated(EnumType.STRING)
     private GroupExp groupExp;
 
     @ManyToOne
@@ -34,7 +35,7 @@ public class PokemonTrainer {
     private Trainer trainer;
     private Date dateCapture;
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="pokemon-trainer-moves",
+    @JoinTable(name="pokemon_trainer_moves",
             joinColumns =
             @JoinColumn(name="id_pokemon_trainer",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_move",referencedColumnName = "id")

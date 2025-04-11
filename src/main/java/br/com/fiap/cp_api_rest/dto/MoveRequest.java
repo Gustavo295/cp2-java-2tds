@@ -34,9 +34,6 @@ public record MoveRequest(
         @Min(1)
         int ppMax,
 
-        @Min(0)
-        int ppCurrent,
-
         @NotEmpty
         List<@NotNull Pokemon> pokemonsLearn
 

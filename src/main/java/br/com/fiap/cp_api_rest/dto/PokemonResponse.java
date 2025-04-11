@@ -6,6 +6,7 @@ public record PokemonResponse (
         int number,
         String name,
         String title,
+        String description,
         Type typePrimary,
         Type typeSecondary,
         int lineEvolution

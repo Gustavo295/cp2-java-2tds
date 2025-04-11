@@ -1,42 +1,49 @@
 package br.com.fiap.cp_api_rest.controller;
 
-import br.com.fiap.cp_api_rest.entity.Trainer;
+import br.com.fiap.cp_api_rest.dto.TrainerRequest;
+import br.com.fiap.cp_api_rest.dto.TrainerResponse;
 import br.com.fiap.cp_api_rest.service.TrainerService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/trainers")
+@RequestMapping(value="/trainers",produces = {"application/json"})
+@Tag(name = "api-trainers")
 public class TrainerController {
 
-   @Autowired
-   private  TrainerService service;
+    private final TrainerService service;
 
-    @GetMapping
-    public List<Trainer> findAll() {
-        return service.findAll();
+    public TrainerController(TrainerService service) {
+        this.service = service;
     }
 
-    @GetMapping("/{id}")
-    public Trainer findById(@PathVariable Long id) {
-        return service.findById(id).orElse(null);
+    @GetMapping
+    public ResponseEntity<List<TrainerResponse>> findAll() {
+        return ResponseEntity.ok(service.findAll());
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<TrainerResponse> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(service.findById(id));
     }
 
     @PostMapping
-    public Trainer save(@RequestBody Trainer trainer) {
-        return service.save(trainer);
+    public ResponseEntity<TrainerResponse> save(@RequestBody @Valid TrainerRequest request) {
+        return ResponseEntity.ok(service.save(request));
     }
 
-    @PutMapping("/{id}")
-    public Trainer update(@PathVariable Long id, @RequestBody Trainer trainer) {
-        trainer.setId(id);
-        return service.save(trainer);
+    @PutMapping("{id}")
+    public ResponseEntity<TrainerResponse> update(@PathVariable Long id, @RequestBody @Valid TrainerRequest request) {
+        return ResponseEntity.ok(service.update(id, request));
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
