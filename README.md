@@ -11,6 +11,7 @@ Possíveis moves
     "accuracy": 100.0,
     "ppMax": 35
 }
+
 Pokemon
 
 {
@@ -25,6 +26,7 @@ Pokemon
     "lineEvolution": 1,
     "possibleMovesLearnId":[1]
 }
+
 Trainer
 
 {
@@ -36,6 +38,7 @@ Trainer
     "numberBadge":0,
     "city": "Kanto"        
 }
+
 Pokemon do Trainer
 
 {
