@@ -14,7 +14,7 @@ import java.util.List;
 
 public record PokemonTrainerRequest(
 
-        @NotBlank
+
         @Size(min = 2, max = 100)
         String nickname,
 
@@ -22,7 +22,7 @@ public record PokemonTrainerRequest(
         GroupExp groupExp,
 
         @NotNull
-        Pokemon pokemon,
+        Integer pokemonId,
 
         @NotNull
         Gender gender,
@@ -40,14 +40,14 @@ public record PokemonTrainerRequest(
         String location,
 
         @NotNull
-        Trainer trainer,
+        Integer trainerId,
 
         @NotNull
         @PastOrPresent(message = "A data de captura tem que ter ocorrido")
         Date dateCapture,
 
-        @NotEmpty
-        List<@NotNull Move> moves,
+
+        List<@NotNull Integer> movesId,
 
         boolean shiny
 

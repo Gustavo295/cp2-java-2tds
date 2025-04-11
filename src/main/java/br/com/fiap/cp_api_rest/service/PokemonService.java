@@ -55,10 +55,10 @@ public class PokemonService {
     }
 
     private Pokemon RequestToPokemon(PokemonRequest request) {
-        List<Move> moves = request.possibleMovesLearn() != null
-                ? request.possibleMovesLearn().stream()
-                .map(m -> moveRepository.findById(m.getId())
-                        .orElseThrow(() -> new EntityNotFoundException("Move com ID " + m.getId() + " não encontrado")))
+        List<Move> moves = request.possibleMovesLearnId() != null
+                ? request.possibleMovesLearnId().stream()
+                .map(id -> moveRepository.findById(id)
+                        .orElseThrow(() -> new EntityNotFoundException("Move com ID " + id + " não encontrado")))
                 .collect(Collectors.toList())
                 : List.of();
 
@@ -76,12 +76,8 @@ public class PokemonService {
                 moves
         );
     }
+
     public static PokemonResponse PokemonToResponse(Pokemon pokemon) {
-        List<MoveResponse> moves = (pokemon.getPossibleMovesLearn() != null)
-                ? pokemon.getPossibleMovesLearn().stream()
-                .map(MoveResponse::fromEntity)
-                .toList()
-                : List.of();
 
         return new PokemonResponse(
                 pokemon.getNumber(),
@@ -93,5 +89,8 @@ public class PokemonService {
                 pokemon.getLineEvolution()
         );
     }
+
+
+
 }
 

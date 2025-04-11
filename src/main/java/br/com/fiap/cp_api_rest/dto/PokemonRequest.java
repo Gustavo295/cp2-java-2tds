@@ -40,6 +40,6 @@ public record PokemonRequest(
         int lineEvolution,
 
         @NotEmpty
-        List<@NotNull Move> possibleMovesLearn
+        List<@NotNull Integer> possibleMovesLearnId
 
 ) {}

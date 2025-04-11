@@ -45,10 +45,10 @@ public class Status {
         this.speedEv = 0;
     }
 
-    public int calculateHp(){
-        return ((2*hpBase+hpIv+(hpEv/4)*lvl)/100)+lvl+10;
-
+    public int calculateHp() {
+        return ((2 * hpBase + hpIv + (hpEv / 4)) * lvl / 100) + lvl + 10;
     }
+
 
     public void calculateAllAttributes(){
         this.hp=calculateHp();
@@ -59,9 +59,10 @@ public class Status {
         this.speed=calculateOtherAttributes(speedBase,speedIv,speedEv);
         this.total= attack + hp + spAttack + defense + spDefense + speed;
     }
-    public int calculateOtherAttributes(int base,int Iv,int Ev){
-        return ((2*base+Iv+(Ev/4)*lvl)/100)+5;
+    public int calculateOtherAttributes(int base, int iv, int ev) {
+        return ((2 * base + iv + (ev / 4)) * lvl / 100) + 5;
     }
+
     public int calculateLevelFromExp(GroupExp groupXp, int expPoints) {
 
         for (lvl = 1; lvl <= 100; lvl++) {
@@ -161,6 +162,10 @@ public class Status {
         return lvl;
     }
 
+    public void setExpPoints(int expPoints) {
+        this.expPoints = expPoints;
+    }
+
     public int getExpPoints() {
         return expPoints;
     }
@@ -208,4 +213,6 @@ public class Status {
     public void setId(Long id) {
         this.id = id;
     }
+
+
 }

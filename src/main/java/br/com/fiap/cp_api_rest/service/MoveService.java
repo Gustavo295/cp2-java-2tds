@@ -1,16 +1,18 @@
 package br.com.fiap.cp_api_rest.service;
 
+import br.com.fiap.cp_api_rest.controller.MoveController;
 import br.com.fiap.cp_api_rest.dto.MoveRequest;
 import br.com.fiap.cp_api_rest.dto.MoveResponse;
 import br.com.fiap.cp_api_rest.entity.Move;
-import br.com.fiap.cp_api_rest.enums.Category;
-import br.com.fiap.cp_api_rest.enums.Type;
 import br.com.fiap.cp_api_rest.repository.MoveRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.hateoas.Link;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Service
 public class MoveService {
@@ -21,24 +23,23 @@ public class MoveService {
         this.repository = repository;
     }
 
-    public List<MoveResponse> findAll() {
-        return repository.findAll().stream()
-                .map(this::MoveToResponse)
-                .collect(Collectors.toList());
+    public Page<MoveResponse> findAll(Pageable pageable) {
+        return repository.findAll(pageable).map(move -> MoveToResponse(move,true));
+
     }
 
-    public MoveResponse findById(Long id) {
+    public MoveResponse findById(Integer id) {
         Move move = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Move não encontrado com id " + id));
-        return MoveToResponse(move);
+        return MoveToResponse(move,false);
     }
 
     public MoveResponse save(MoveRequest request) {
         Move move = RequestToMove(request);
-        return MoveToResponse(repository.save(move));
+        return MoveToResponse(repository.save(move),true);
     }
 
-    public MoveResponse update(Long id, MoveRequest request) {
+    public MoveResponse update(Integer id, MoveRequest request) {
         Move moveExistente = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Move não encontrado com id " + id));
 
@@ -51,16 +52,15 @@ public class MoveService {
         moveExistente.setPpMax(request.ppMax());
         moveExistente.setPokemonsLearn(request.pokemonsLearn());
 
-        return MoveToResponse(repository.save(moveExistente));
+        return MoveToResponse(repository.save(moveExistente),false);
     }
 
-    public void delete(Long id) {
+    public void delete(Integer id) {
         repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Move não encontrado com id " + id));
         repository.deleteById(id);
     }
 
-    // ========== Conversão DTO <-> Entity ==========
 
     private Move RequestToMove(MoveRequest request) {
         Move move = new Move();
@@ -71,11 +71,22 @@ public class MoveService {
         move.setPower(request.power());
         move.setAccuracy(request.accuracy());
         move.setPpMax(request.ppMax());
+        move.setPpCurrent(move.getPpMax());
         move.setPokemonsLearn(request.pokemonsLearn());
         return move;
     }
 
-    private MoveResponse MoveToResponse(Move move) {
+    public MoveResponse MoveToResponse(Move move, boolean self) {
+        Link link;
+        if(self){
+            link = linkTo(methodOn(MoveController.class).getById(move.getId())).withSelfRel().withRel("Move");
+        }else{
+            link =linkTo(
+                    methodOn(
+                            MoveController.class
+                    ).getById(0)
+            ).withRel("Lista de Clientes");
+        }
         return new MoveResponse(
                 move.getName(),
                 move.getDescription(),
@@ -85,6 +96,6 @@ public class MoveService {
                 move.getAccuracy(),
                 move.getPpMax(),
                 move.getPpCurrent()
-                );
+        );
     }
 }

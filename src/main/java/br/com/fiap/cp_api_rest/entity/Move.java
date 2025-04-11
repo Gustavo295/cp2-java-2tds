@@ -13,7 +13,7 @@ public class Move {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long id;
+    private Integer id;
     private String name;
     private String description;
     private Type type;
@@ -33,7 +33,7 @@ public class Move {
     public Move() {
     }
 
-    public Move(Long id, String name, String description, Type type, Category category, double power, double accuracy, int ppMax, int ppCurrent,  List<Pokemon> pokemonsLearn) {
+    public Move(Integer id, String name, String description, Type type, Category category, double power, double accuracy, int ppMax, int ppCurrent,  List<Pokemon> pokemonsLearn) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -46,11 +46,11 @@ public class Move {
         this.pokemonsLearn = pokemonsLearn;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

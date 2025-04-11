@@ -24,7 +24,7 @@ public record MoveRequest(
         Category category,
 
         @DecimalMin(value = "0.0", inclusive = true)
-        @DecimalMax(value = "100.0", inclusive = true)
+        @DecimalMax(value = "120.0", inclusive = true)
         double power,
 
         @DecimalMin(value = "0.0", inclusive = true)
@@ -34,7 +34,6 @@ public record MoveRequest(
         @Min(1)
         int ppMax,
 
-        @NotEmpty
         List<@NotNull Pokemon> pokemonsLearn
 
 ) {}

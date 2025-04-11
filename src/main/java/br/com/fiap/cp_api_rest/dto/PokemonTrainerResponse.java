@@ -4,6 +4,7 @@ import br.com.fiap.cp_api_rest.entity.PokemonTrainer;
 import br.com.fiap.cp_api_rest.enums.Gender;
 import br.com.fiap.cp_api_rest.enums.GroupExp;
 import br.com.fiap.cp_api_rest.enums.Nature;
+import org.springframework.hateoas.Link;
 
 import java.util.Date;
 import java.util.List;
@@ -22,6 +23,7 @@ public record PokemonTrainerResponse(
         String trainerName,
         String pokemonName,
         List<String> moveNames
+
 ) {
 
 
