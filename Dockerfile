@@ -1,5 +1,5 @@
 # Etapa 1: Build manual com OpenJDK 18 + Gradle instalado manualmente
-FROM gradle:8.7-jdk-alpine as build
+FROM gradle:8.7.0-jdk17 as build
 
 WORKDIR /home/app
 COPY . .
