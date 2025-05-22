@@ -5,7 +5,7 @@ WORKDIR /home/app
 COPY . .
 
 # Faz o build do jar
-RUN ./gradlew bootJar
+RUN gradle bootJar --no-daemon
 
 # Etapa 2: Runtime
 FROM gradle:8.7-jdk-alpine
