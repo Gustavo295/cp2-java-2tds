@@ -1,5 +1,5 @@
 # Etapa 1: Build manual com OpenJDK 18 + Gradle instalado manualmente
-FROM gradle:8.7.0-jdk17 as build
+FROM gradle:8.13-jdk17 as build
 
 WORKDIR /home/app
 COPY . .
@@ -8,7 +8,7 @@ COPY . .
 RUN gradle bootJar --no-daemon
 
 # Etapa 2: Runtime
-FROM gradle:8.7-jdk-alpine
+FROM gradle:8.13-jdk17
 WORKDIR /app
 RUN adduser -D -g '' appuser
 
