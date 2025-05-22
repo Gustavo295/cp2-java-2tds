@@ -10,7 +10,7 @@ RUN gradle bootJar --no-daemon
 # Etapa 2: Runtime
 FROM gradle:8.13-jdk17
 WORKDIR /app
-RUN adduser -D -g '' appuser
+RUN adduser --disabled-password --gecos "" appuser
 
 COPY --from=build /home/app/build/libs/*.jar app.jar
 
