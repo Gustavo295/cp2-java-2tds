@@ -10,10 +10,10 @@ RUN gradle bootJar --no-daemon
 # Etapa 2: Runtime
 FROM gradle:8.7-jdk-alpine
 WORKDIR /app
+RUN adduser -D -g '' appuser
 
 COPY --from=build /home/app/build/libs/*.jar app.jar
 
-RUN useradd -m appuser
 USER appuser
 
 EXPOSE 8080
